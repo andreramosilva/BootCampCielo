@@ -1,3 +1,5 @@
+package com.example.precadastro.PreCadastro.services;
+
 import com.example.precadastro.PreCadastro.controllers.dto.ClienteRequest;
 import com.example.precadastro.PreCadastro.controllers.dto.ClienteResponse;
 import com.example.precadastro.PreCadastro.exceptions.ClienteAlreadyExistsException;
@@ -6,8 +8,6 @@ import com.example.precadastro.PreCadastro.models.ClienteFisico;
 import com.example.precadastro.PreCadastro.models.ClienteJuridico;
 import com.example.precadastro.PreCadastro.repositories.ClienteFisicoRepository;
 import com.example.precadastro.PreCadastro.repositories.ClienteJuridicoRepository;
-import com.example.precadastro.PreCadastro.repositories.ClienteRepository;
-import com.example.precadastro.PreCadastro.services.ClienteService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -32,8 +32,6 @@ public class ClienteServiceTest {
     @Mock
     private ClienteFisicoRepository clienteFisicoRepository;
 
-    @Mock
-    private ClienteRepository clienteRepository;
 
     @BeforeEach
     public void setUp() {
