@@ -28,7 +28,7 @@ public class ClienteService {
 
     @Autowired
     private ClienteFisicoRepository clienteFisicoRepository;
-    
+
 
     public ClienteResponse cadastrarClienteFisico(ClienteRequest clienteRequest) {
         if (clienteRequest.getCpf() != null && clienteFisicoRepository.existsByCpf(clienteRequest.getCpf())) {
@@ -42,6 +42,8 @@ public class ClienteService {
             BeanUtils.copyProperties(clienteRequest, cliente);
             ClienteFisico savedCliente = clienteFisicoRepository.save(cliente);
             BeanUtils.copyProperties(savedCliente, response);
+            SqsService sqsService = new SqsService();
+            sqsService.enviaMensagem(response.toString());
             return response;
         }
         return response;
@@ -59,6 +61,8 @@ public class ClienteService {
             BeanUtils.copyProperties(clienteRequest, cliente);
             ClienteJuridico savedCliente = clienteJuridicoRepository.save(cliente);
             BeanUtils.copyProperties(savedCliente, response);
+            SqsService sqsService = new SqsService();
+            sqsService.enviaMensagem(response.toString());
             return response;
         }
 
@@ -142,6 +146,8 @@ public class ClienteService {
                 BeanUtils.copyProperties(clienteRequest, cliente);
                 ClienteFisico updatedCliente = clienteFisicoRepository.save(cliente);
                 BeanUtils.copyProperties(updatedCliente, response);
+                SqsService sqsService = new SqsService();
+                sqsService.enviaMensagem(response.toString());
                 return response;
             } else {
                 throw new ClienteNotFoundException("Cliente não encontrado.");
@@ -153,6 +159,8 @@ public class ClienteService {
                 BeanUtils.copyProperties(clienteRequest, cliente);
                 ClienteJuridico updatedCliente = clienteJuridicoRepository.save(cliente);
                 BeanUtils.copyProperties(updatedCliente, response);
+                SqsService sqsService = new SqsService();
+                sqsService.enviaMensagem(response.toString());
                 return response;
             } else {
                 throw new ClienteNotFoundException("Cliente não encontrado.");

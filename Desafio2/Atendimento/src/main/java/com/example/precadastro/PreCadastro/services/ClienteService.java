@@ -28,7 +28,7 @@ public class ClienteService {
 
     @Autowired
     private ClienteFisicoRepository clienteFisicoRepository;
-    
+
 
     public ClienteResponse cadastrarClienteFisico(ClienteRequest clienteRequest) {
         if (clienteRequest.getCpf() != null && clienteFisicoRepository.existsByCpf(clienteRequest.getCpf())) {
